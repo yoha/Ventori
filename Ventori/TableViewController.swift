@@ -14,23 +14,12 @@ class TableViewController: UITableViewController {
     
     let tableViewCellID = "reusableCell"
     
-    // MARK: - Helper Methods
-    
-    func presentAddInventoryViewController() {
-        
-    }
-    
     // MARK: - UIViewController Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isToolbarHidden = false
-        
-        let addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                               target: self,
-                                               action: #selector(TableViewController.presentAddInventoryViewController))
-        self.navigationController?.toolbar.items = [addBarButtonItem]
+        self.title = "VENTORI"
     }
 
     // MARK: - Table view data source
