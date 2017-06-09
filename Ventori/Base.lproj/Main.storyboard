@@ -9,6 +9,12 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
+            <string>AvenirNext-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Table View Controller-->
         <scene sceneID="DzF-vx-jt1">
@@ -99,40 +105,68 @@
                                     <constraint firstAttribute="height" constant="183" id="opP-0a-fbi"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pUn-TV-bCv">
-                                <rect key="frame" x="16" y="324" width="343" height="283"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inventory Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NI-UK-xOW">
-                                <rect key="frame" x="16" y="283" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Inventory Name" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqq-XR-FQh">
+                                <rect key="frame" x="16" y="283" width="343" height="32"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="fnd-uS-Jqh">
+                                <rect key="frame" x="35" y="335" width="305" height="64"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dv0-xz-Sg2">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="hi2-cD-gna"/>
+                                            <constraint firstAttribute="height" constant="64" id="z09-xg-9Hx"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zch-8l-hBs">
+                                        <rect key="frame" x="104" y="0.0" width="97" height="64"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="75"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oa8-XI-PZ9">
+                                        <rect key="frame" x="241" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="eP2-g8-twH"/>
+                                            <constraint firstAttribute="width" constant="64" id="oCx-AC-O8R"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nhF-FT-GOc" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leading" id="5AS-O4-yMV"/>
-                            <constraint firstItem="nhF-FT-GOc" firstAttribute="top" secondItem="pUn-TV-bCv" secondAttribute="bottom" constant="16" id="5ye-OI-WkG"/>
-                            <constraint firstItem="1NI-UK-xOW" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="8SO-m5-72n"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="Bj7-1d-2Q0"/>
-                            <constraint firstItem="1NI-UK-xOW" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="Cjt-Rg-cZ4"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="D1b-YG-oDp"/>
-                            <constraint firstItem="pUn-TV-bCv" firstAttribute="top" secondItem="1NI-UK-xOW" secondAttribute="bottom" constant="20" id="EjB-lh-GBI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fnd-uS-Jqh" secondAttribute="trailing" constant="19" id="L4D-fV-LKr"/>
+                            <constraint firstItem="Bqq-XR-FQh" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="N1m-Yq-GFM"/>
                             <constraint firstAttribute="trailing" secondItem="nhF-FT-GOc" secondAttribute="trailing" id="WGi-VM-Dxx"/>
-                            <constraint firstItem="pUn-TV-bCv" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="dy1-YP-P2u"/>
-                            <constraint firstItem="nhF-FT-GOc" firstAttribute="top" secondItem="pUn-TV-bCv" secondAttribute="bottom" constant="16" id="eUw-kq-QLY"/>
+                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="centerX" secondItem="DsC-fs-zom" secondAttribute="centerX" id="YUT-9t-PZV"/>
+                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="top" secondItem="Bqq-XR-FQh" secondAttribute="bottom" constant="20" id="gRB-mT-1tG"/>
+                            <constraint firstItem="3wp-YC-hnf" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="gj3-H3-5TK"/>
+                            <constraint firstItem="Bqq-XR-FQh" firstAttribute="top" secondItem="3wp-YC-hnf" secondAttribute="bottom" constant="20" id="iL7-wc-dXb"/>
                             <constraint firstItem="pBQ-50-emf" firstAttribute="top" secondItem="nhF-FT-GOc" secondAttribute="bottom" id="iNQ-jz-dUU"/>
-                            <constraint firstItem="pUn-TV-bCv" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="jwd-Bo-1Fc"/>
+                            <constraint firstItem="3wp-YC-hnf" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="lC4-8d-fm0"/>
+                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="top" secondItem="Bqq-XR-FQh" secondAttribute="bottom" constant="20" id="mMa-BO-Ehj"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="top" secondItem="gMx-VO-jfg" secondAttribute="bottom" constant="16" id="omA-U1-Hag"/>
-                            <constraint firstItem="1NI-UK-xOW" firstAttribute="top" secondItem="3wp-YC-hnf" secondAttribute="bottom" constant="20" id="szD-gF-y2A"/>
-                            <constraint firstItem="pUn-TV-bCv" firstAttribute="top" secondItem="1NI-UK-xOW" secondAttribute="bottom" constant="20" id="tZo-PT-BTR"/>
+                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" constant="19" id="psN-No-BfH"/>
+                            <constraint firstItem="Bqq-XR-FQh" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="sDb-fR-y5m"/>
+                            <constraint firstItem="3wp-YC-hnf" firstAttribute="top" secondItem="gMx-VO-jfg" secondAttribute="bottom" constant="16" id="vr7-RR-A4g"/>
+                            <constraint firstItem="Bqq-XR-FQh" firstAttribute="top" secondItem="3wp-YC-hnf" secondAttribute="bottom" constant="20" id="wGg-Lx-wH6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Ni-mb-wZ9"/>
+                    <connections>
+                        <outlet property="counterLabel" destination="Zch-8l-hBs" id="h92-7S-3H3"/>
+                        <outlet property="inventoryImageView" destination="3wp-YC-hnf" id="cw8-rz-Xm8"/>
+                        <outlet property="inventoryNameTextField" destination="Bqq-XR-FQh" id="OoZ-cg-JA4"/>
+                        <outlet property="minusButtonImageView" destination="dv0-xz-Sg2" id="97x-pW-9cv"/>
+                        <outlet property="plusButtonImageView" destination="Oa8-XI-PZ9" id="Hjs-dr-tva"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRT-WF-wRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

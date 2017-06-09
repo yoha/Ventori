@@ -14,6 +14,18 @@ class AddViewController: UIViewController {
     
     var inventoryTitle: String!
     
+    let boxIcon = "box100"
+    let minusIcon = "Minus100"
+    let plusIcon = "Plus100"
+    
+    // MARK: - IBOutlet Properties
+    
+    @IBOutlet var inventoryImageView: UIImageView!
+    @IBOutlet weak var inventoryNameTextField: UITextField!
+    @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet var minusButtonImageView: UIImageView!
+    @IBOutlet var plusButtonImageView: UIImageView!
+    
     // MARK: - IBAction Methods
     
     @IBAction func cancelBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
@@ -28,8 +40,13 @@ class AddViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.inventoryImageView.contentMode = .center
+        self.inventoryImageView.image = UIImage(named: self.boxIcon)
+        self.inventoryNameTextField.text = "Inventory Name"
+        self.counterLabel.text = "1"
+        self.minusButtonImageView.image = UIImage(named: self.minusIcon)
+        self.plusButtonImageView.image = UIImage(named: self.plusIcon)
     }
 
     /*
