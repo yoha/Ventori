@@ -10,7 +10,15 @@ import UIKit
 
 class AddViewController: UIViewController {
     
+    // MARK: - Stored Properties
+    
+    var inventoryTitle: String!
+    
     // MARK: - IBAction Methods
+    
+    @IBAction func cancelBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)

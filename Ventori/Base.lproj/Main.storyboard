@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,15 +26,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GhF-gg-7y1">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inventory Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GhF-gg-7y1">
+                                            <rect key="frame" x="16" y="5" width="120.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rdW-Za-MlC">
-                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="creation date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rdW-Za-MlC">
+                                            <rect key="frame" x="16" y="25.5" width="74.5" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -76,27 +77,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhF-FT-GOc">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nhF-FT-GOc">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nNf-L7-FOu"/>
+                                    <barButtonItem systemItem="cancel" id="OD5-2l-diI">
+                                        <connections>
+                                            <action selector="cancelBarButtonItemDidTouch:" destination="l7y-8I-xTl" id="Si0-eP-qD4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ewD-vB-I8H"/>
                                     <barButtonItem systemItem="save" id="ex5-hT-wrR">
                                         <connections>
                                             <action selector="saveBarButtonItemDidTouch:" destination="l7y-8I-xTl" id="hfB-p6-ykT"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mTd-v8-gie"/>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3wp-YC-hnf">
+                                <rect key="frame" x="16" y="80" width="343" height="183"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="183" id="opP-0a-fbi"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pUn-TV-bCv">
+                                <rect key="frame" x="16" y="324" width="343" height="283"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inventory Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NI-UK-xOW">
+                                <rect key="frame" x="16" y="283" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nhF-FT-GOc" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leading" id="5AS-O4-yMV"/>
+                            <constraint firstItem="nhF-FT-GOc" firstAttribute="top" secondItem="pUn-TV-bCv" secondAttribute="bottom" constant="16" id="5ye-OI-WkG"/>
+                            <constraint firstItem="1NI-UK-xOW" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="8SO-m5-72n"/>
+                            <constraint firstItem="3wp-YC-hnf" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="Bj7-1d-2Q0"/>
+                            <constraint firstItem="1NI-UK-xOW" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="Cjt-Rg-cZ4"/>
+                            <constraint firstItem="3wp-YC-hnf" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="D1b-YG-oDp"/>
+                            <constraint firstItem="pUn-TV-bCv" firstAttribute="top" secondItem="1NI-UK-xOW" secondAttribute="bottom" constant="20" id="EjB-lh-GBI"/>
+                            <constraint firstAttribute="trailing" secondItem="nhF-FT-GOc" secondAttribute="trailing" id="WGi-VM-Dxx"/>
+                            <constraint firstItem="pUn-TV-bCv" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="dy1-YP-P2u"/>
+                            <constraint firstItem="nhF-FT-GOc" firstAttribute="top" secondItem="pUn-TV-bCv" secondAttribute="bottom" constant="16" id="eUw-kq-QLY"/>
+                            <constraint firstItem="pBQ-50-emf" firstAttribute="top" secondItem="nhF-FT-GOc" secondAttribute="bottom" id="iNQ-jz-dUU"/>
+                            <constraint firstItem="pUn-TV-bCv" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="jwd-Bo-1Fc"/>
+                            <constraint firstItem="3wp-YC-hnf" firstAttribute="top" secondItem="gMx-VO-jfg" secondAttribute="bottom" constant="16" id="omA-U1-Hag"/>
+                            <constraint firstItem="1NI-UK-xOW" firstAttribute="top" secondItem="3wp-YC-hnf" secondAttribute="bottom" constant="20" id="szD-gF-y2A"/>
+                            <constraint firstItem="pUn-TV-bCv" firstAttribute="top" secondItem="1NI-UK-xOW" secondAttribute="bottom" constant="20" id="tZo-PT-BTR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Ni-mb-wZ9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRT-WF-wRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2806" y="51"/>
+            <point key="canvasLocation" x="2805.5999999999999" y="50.824587706146929"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="848-rK-tTt">
