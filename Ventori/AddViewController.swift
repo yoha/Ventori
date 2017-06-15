@@ -29,7 +29,10 @@ class AddViewController: UIViewController {
     // MARK: - IBAction Methods
     
     @IBAction func cancelBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+        if self.presentingViewController is UINavigationController {
+            self.dismiss(animated: true, completion: nil)
+        }
+        else { self.navigationController?.popViewController(animated: true) }
     }
     
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
@@ -47,6 +50,12 @@ class AddViewController: UIViewController {
         self.counterLabel.text = "1"
         self.minusButtonImageView.image = UIImage(named: self.minusIcon)
         self.plusButtonImageView.image = UIImage(named: self.plusIcon)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isToolbarHidden = true
     }
 
     /*

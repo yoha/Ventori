@@ -21,6 +21,12 @@ class TableViewController: UITableViewController {
         
         self.title = "VENTORI"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isToolbarHidden = false
+    }
 
     // MARK: - Table view data source
 
