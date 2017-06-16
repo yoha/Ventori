@@ -185,6 +185,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="counterLabel" destination="Zch-8l-hBs" id="h92-7S-3H3"/>
+                        <outlet property="descriptionTextView" destination="N5R-XT-gqV" id="5qd-l1-6MX"/>
                         <outlet property="inventoryImageView" destination="3wp-YC-hnf" id="cw8-rz-Xm8"/>
                         <outlet property="inventoryNameTextField" destination="Bqq-XR-FQh" id="OoZ-cg-JA4"/>
                         <outlet property="minusButtonImageView" destination="dv0-xz-Sg2" id="97x-pW-9cv"/>
