@@ -50,6 +50,8 @@ class AddViewController: UIViewController {
         self.counterLabel.text = "1"
         self.minusButtonImageView.image = UIImage(named: self.minusIcon)
         self.plusButtonImageView.image = UIImage(named: self.plusIcon)
+        
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
