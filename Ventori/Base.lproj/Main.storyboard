@@ -13,6 +13,7 @@
         <array key="AvenirNext.ttc">
             <string>AvenirNext-Bold</string>
             <string>AvenirNext-Medium</string>
+            <string>AvenirNext-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -117,13 +118,13 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Inventory Name" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqq-XR-FQh">
-                                <rect key="frame" x="16" y="287" width="343" height="30"/>
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="fnd-uS-Jqh">
-                                <rect key="frame" x="35" y="539" width="305" height="64"/>
+                                <rect key="frame" x="35" y="399" width="305" height="64"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dv0-xz-Sg2">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -147,45 +148,33 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N5R-XT-gqV">
-                                <rect key="frame" x="16" y="337" width="343" height="182"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nhF-FT-GOc" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leading" id="5AS-O4-yMV"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="Bj7-1d-2Q0"/>
-                            <constraint firstItem="N5R-XT-gqV" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="C0s-6Y-7bg"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="D1b-YG-oDp"/>
-                            <constraint firstItem="N5R-XT-gqV" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="KKL-y5-jLD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fnd-uS-Jqh" secondAttribute="trailing" constant="19" id="L4D-fV-LKr"/>
                             <constraint firstItem="Bqq-XR-FQh" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="N1m-Yq-GFM"/>
                             <constraint firstAttribute="trailing" secondItem="nhF-FT-GOc" secondAttribute="trailing" id="WGi-VM-Dxx"/>
                             <constraint firstItem="fnd-uS-Jqh" firstAttribute="centerX" secondItem="DsC-fs-zom" secondAttribute="centerX" id="YUT-9t-PZV"/>
-                            <constraint firstItem="N5R-XT-gqV" firstAttribute="top" secondItem="Bqq-XR-FQh" secondAttribute="bottom" constant="20" id="c1U-e0-XjQ"/>
-                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="top" secondItem="Bqq-XR-FQh" secondAttribute="bottom" constant="222" id="gRB-mT-1tG"/>
+                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="top" secondItem="Bqq-XR-FQh" secondAttribute="bottom" constant="51" id="gRB-mT-1tG"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" id="gj3-H3-5TK"/>
-                            <constraint firstItem="Bqq-XR-FQh" firstAttribute="top" secondItem="3wp-YC-hnf" secondAttribute="bottom" constant="20" id="iL7-wc-dXb"/>
+                            <constraint firstItem="Bqq-XR-FQh" firstAttribute="top" secondItem="3wp-YC-hnf" secondAttribute="bottom" constant="51" id="iL7-wc-dXb"/>
                             <constraint firstItem="pBQ-50-emf" firstAttribute="top" secondItem="nhF-FT-GOc" secondAttribute="bottom" id="iNQ-jz-dUU"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="lC4-8d-fm0"/>
-                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="top" secondItem="Bqq-XR-FQh" secondAttribute="bottom" constant="222" id="mMa-BO-Ehj"/>
+                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="top" secondItem="Bqq-XR-FQh" secondAttribute="bottom" constant="51" id="mMa-BO-Ehj"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="top" secondItem="gMx-VO-jfg" secondAttribute="bottom" constant="20" id="omA-U1-Hag"/>
                             <constraint firstItem="fnd-uS-Jqh" firstAttribute="leading" secondItem="DsC-fs-zom" secondAttribute="leadingMargin" constant="19" id="psN-No-BfH"/>
                             <constraint firstItem="Bqq-XR-FQh" firstAttribute="trailing" secondItem="DsC-fs-zom" secondAttribute="trailingMargin" id="sDb-fR-y5m"/>
-                            <constraint firstItem="fnd-uS-Jqh" firstAttribute="top" secondItem="N5R-XT-gqV" secondAttribute="bottom" constant="20" id="vFD-Eb-GrT"/>
                             <constraint firstItem="3wp-YC-hnf" firstAttribute="top" secondItem="gMx-VO-jfg" secondAttribute="bottom" constant="20" id="vr7-RR-A4g"/>
-                            <constraint firstItem="Bqq-XR-FQh" firstAttribute="top" secondItem="3wp-YC-hnf" secondAttribute="bottom" constant="20" id="wGg-Lx-wH6"/>
+                            <constraint firstItem="Bqq-XR-FQh" firstAttribute="top" secondItem="3wp-YC-hnf" secondAttribute="bottom" constant="51" id="wGg-Lx-wH6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Ni-mb-wZ9"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="counterLabel" destination="Zch-8l-hBs" id="h92-7S-3H3"/>
-                        <outlet property="descriptionTextView" destination="N5R-XT-gqV" id="5qd-l1-6MX"/>
                         <outlet property="inventoryImageView" destination="3wp-YC-hnf" id="cw8-rz-Xm8"/>
                         <outlet property="inventoryNameTextField" destination="Bqq-XR-FQh" id="OoZ-cg-JA4"/>
                         <outlet property="minusButtonImageView" destination="dv0-xz-Sg2" id="97x-pW-9cv"/>

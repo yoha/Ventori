@@ -22,7 +22,6 @@ class AddViewController: UIViewController {
     
     @IBOutlet var inventoryImageView: UIImageView!
     @IBOutlet weak var inventoryNameTextField: UITextField!
-    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet var minusButtonImageView: UIImageView!
     @IBOutlet var plusButtonImageView: UIImageView!
@@ -55,10 +54,6 @@ class AddViewController: UIViewController {
         
         self.inventoryNameTextField.text = "Inventory Name"
         
-        self.descriptionTextView.layer.borderWidth = 0.5
-        self.descriptionTextView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
-        self.descriptionTextView.layer.cornerRadius = 5
-        
         self.counterLabel.text = "1"
         self.minusButtonImageView.image = UIImage(named: self.minusIcon)
         self.plusButtonImageView.image = UIImage(named: self.plusIcon)
@@ -77,7 +72,6 @@ class AddViewController: UIViewController {
     
     func dismissKeyboardIfPresent() {
         self.inventoryNameTextField.resignFirstResponder()
-        self.descriptionTextView.resignFirstResponder()
     }
 
     /*
