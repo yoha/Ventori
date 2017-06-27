@@ -12,19 +12,33 @@ class AddViewController: UIViewController {
     
     // MARK: - Stored Properties
     
-    var inventoryTitle: String!
+    var inventories: [Inventory]?
     
-    let boxIcon = "box100"
-    let minusIcon = "Minus100"
-    let plusIcon = "Plus100"
+    var counter = 0 {
+        willSet {
+            self.counterLabel.text = String(describing: newValue)
+        }
+    }
+    
+    enum Icon: String {
+        case box, decrement, increment
+        
+        func getName() -> String {
+            switch self {
+            case .box: return "box100"
+            case .decrement: return "Minus100"
+            case .increment: return "Plus100"
+            }
+        }
+    }
     
     // MARK: - IBOutlet Properties
     
     @IBOutlet var inventoryImageView: UIImageView!
     @IBOutlet weak var inventoryNameTextField: UITextField!
     @IBOutlet weak var counterLabel: UILabel!
-    @IBOutlet var minusButtonImageView: UIImageView!
-    @IBOutlet var plusButtonImageView: UIImageView!
+    @IBOutlet var decrementButton: UIButton!
+    @IBOutlet var incrementButton: UIButton!
     
     // MARK: - IBAction Methods
     
@@ -39,6 +53,15 @@ class AddViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func decrementButtonDidTouch(_ sender: UIButton) {
+        guard self.counter != 0 else { return }
+        self.counter -= 1
+    }
+    
+    @IBAction func incrementButtonDidTouch(_ sender: UIButton) {
+        self.counter += 1
+    }
+    
     // MARK: - UIViewController Methods
 
     override func viewDidLoad() {
@@ -50,13 +73,17 @@ class AddViewController: UIViewController {
         self.inventoryImageView.layer.borderWidth = 0.5
         self.inventoryImageView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
         self.inventoryImageView.layer.cornerRadius = 5
-        self.inventoryImageView.image = UIImage(named: self.boxIcon)
+        self.inventoryImageView.image = UIImage(named: Icon.box.getName())
         
         self.inventoryNameTextField.text = "Inventory Name"
         
-        self.counterLabel.text = "1"
-        self.minusButtonImageView.image = UIImage(named: self.minusIcon)
-        self.plusButtonImageView.image = UIImage(named: self.plusIcon)
+        self.counterLabel.text = "0"
+        
+        self.decrementButton.setTitle("", for: .normal)
+        self.decrementButton.setBackgroundImage(UIImage(named: Icon.decrement.getName()), for: .normal)
+    
+        self.incrementButton.setTitle("", for: .normal)
+        self.incrementButton.setBackgroundImage(UIImage(named: Icon.increment.getName()), for: .normal)
         
         let dismissKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(AddViewController.dismissKeyboardIfPresent))
         self.view.addGestureRecognizer(dismissKeyboardGesture)

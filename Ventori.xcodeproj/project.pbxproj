@@ -14,6 +14,7 @@
 		657968741EE9161600D09D01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657968721EE9161600D09D01 /* LaunchScreen.storyboard */; };
 		6579687C1EE9197300D09D01 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6579687B1EE9197300D09D01 /* TableViewController.swift */; };
 		65940C2E1EF3DCE0000F2E1F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65940C2D1EF3DCE0000F2E1F /* TableViewCell.swift */; };
+		65E521301F025C100047415C /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E5212F1F025C100047415C /* Inventory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		657968751EE9161600D09D01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6579687B1EE9197300D09D01 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		65940C2D1EF3DCE0000F2E1F /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		65E5212F1F025C100047415C /* Inventory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		657968681EE9161600D09D01 /* Ventori */ = {
 			isa = PBXGroup;
 			children = (
+				65E5212F1F025C100047415C /* Inventory.swift */,
 				65940C2D1EF3DCE0000F2E1F /* TableViewCell.swift */,
 				6541A81A1EE95A41000EE9A4 /* AddViewController.swift */,
 				6579687B1EE9197300D09D01 /* TableViewController.swift */,
@@ -146,6 +149,7 @@
 			files = (
 				6579686A1EE9161600D09D01 /* AppDelegate.swift in Sources */,
 				65940C2E1EF3DCE0000F2E1F /* TableViewCell.swift in Sources */,
+				65E521301F025C100047415C /* Inventory.swift in Sources */,
 				6579687C1EE9197300D09D01 /* TableViewController.swift in Sources */,
 				6541A81B1EE95A41000EE9A4 /* AddViewController.swift in Sources */,
 			);

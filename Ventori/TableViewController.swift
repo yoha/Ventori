@@ -14,6 +14,8 @@ class TableViewController: UITableViewController {
     
     let tableViewCellID = "reusableCell"
     
+    var inventories: [Inventory]?
+    
     // MARK: - UIViewController Methods
 
     override func viewDidLoad() {

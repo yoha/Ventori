@@ -126,26 +126,34 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="fnd-uS-Jqh">
                                 <rect key="frame" x="35" y="399" width="305" height="64"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dv0-xz-Sg2">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMs-oq-dqj">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="hi2-cD-gna"/>
-                                            <constraint firstAttribute="height" constant="64" id="z09-xg-9Hx"/>
+                                            <constraint firstAttribute="width" constant="64" id="YWT-vD-8wg"/>
+                                            <constraint firstAttribute="height" constant="64" id="dDt-ea-hgJ"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="decrementButtonDidTouch:" destination="l7y-8I-xTl" eventType="touchUpInside" id="FyH-gy-SRp"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zch-8l-hBs">
                                         <rect key="frame" x="104" y="0.0" width="97" height="64"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="75"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oa8-XI-PZ9">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsQ-ZE-BeJ">
                                         <rect key="frame" x="241" y="0.0" width="64" height="64"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="64" id="eP2-g8-twH"/>
-                                            <constraint firstAttribute="width" constant="64" id="oCx-AC-O8R"/>
+                                            <constraint firstAttribute="height" constant="64" id="4Mf-Md-Iej"/>
+                                            <constraint firstAttribute="width" constant="64" id="i20-9p-ria"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="incrementButtonDidTouch:" destination="l7y-8I-xTl" eventType="touchUpInside" id="uwv-gZ-Kn4"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -175,10 +183,10 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="counterLabel" destination="Zch-8l-hBs" id="h92-7S-3H3"/>
+                        <outlet property="decrementButton" destination="HMs-oq-dqj" id="mRe-pK-pJm"/>
+                        <outlet property="incrementButton" destination="TsQ-ZE-BeJ" id="pkw-Nk-QZ6"/>
                         <outlet property="inventoryImageView" destination="3wp-YC-hnf" id="cw8-rz-Xm8"/>
                         <outlet property="inventoryNameTextField" destination="Bqq-XR-FQh" id="OoZ-cg-JA4"/>
-                        <outlet property="minusButtonImageView" destination="dv0-xz-Sg2" id="97x-pW-9cv"/>
-                        <outlet property="plusButtonImageView" destination="Oa8-XI-PZ9" id="Hjs-dr-tva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRT-WF-wRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
