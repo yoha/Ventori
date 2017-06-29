@@ -14,7 +14,6 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var inventoryCount: UILabel!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
 

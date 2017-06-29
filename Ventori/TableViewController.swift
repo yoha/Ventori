@@ -104,14 +104,12 @@ class TableViewController: UITableViewController {
 
 extension TableViewController: AddViewControllerDelegate {
     func getInventory(_ inventory: Inventory) {
-        print(String(describing: self.presentingViewController.self))
-        if self.presentingViewController == nil {
+        if self.presentedViewController is UINavigationController {
             self.inventories.insert(inventory, at: 0)
         }
         else {
             guard let validIndexPathForSelectedRow = self.tableView.indexPathForSelectedRow else { return }
-            self.inventories.insert(inventory, at: validIndexPathForSelectedRow.row)
+            self.inventories[validIndexPathForSelectedRow.row] = inventory
         }
-        print(self.inventories.first!)
     }
 }
