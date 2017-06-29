@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		653662841F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653662831F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift */; };
 		6541A81B1EE95A41000EE9A4 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541A81A1EE95A41000EE9A4 /* AddViewController.swift */; };
 		6579686A1EE9161600D09D01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657968691EE9161600D09D01 /* AppDelegate.swift */; };
 		6579686F1EE9161600D09D01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6579686D1EE9161600D09D01 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		653662831F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDateAndTimeProtocol.swift; sourceTree = "<group>"; };
 		6541A81A1EE95A41000EE9A4 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		657968661EE9161600D09D01 /* Ventori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ventori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		657968691EE9161600D09D01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				65E5212F1F025C100047415C /* Inventory.swift */,
 				65940C2D1EF3DCE0000F2E1F /* TableViewCell.swift */,
+				653662831F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift */,
 				6541A81A1EE95A41000EE9A4 /* AddViewController.swift */,
 				6579687B1EE9197300D09D01 /* TableViewController.swift */,
 				657968691EE9161600D09D01 /* AppDelegate.swift */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653662841F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift in Sources */,
 				6579686A1EE9161600D09D01 /* AppDelegate.swift in Sources */,
 				65940C2E1EF3DCE0000F2E1F /* TableViewCell.swift in Sources */,
 				65E521301F025C100047415C /* Inventory.swift in Sources */,

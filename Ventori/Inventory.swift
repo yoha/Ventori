@@ -6,10 +6,11 @@
 //  Copyright © 2017 Corruption of Conformity. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Inventory {
     var name: String
     var count: String
-    var modifiedDate: Date
+    var image: UIImage?
+    var modifiedDate: String
 }

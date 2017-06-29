@@ -17,8 +17,7 @@ class TableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.inventoryCount.text = "1"
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

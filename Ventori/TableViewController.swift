@@ -14,7 +14,7 @@ class TableViewController: UITableViewController {
     
     let tableViewCellID = "reusableCell"
     
-    var inventories: [Inventory]?
+    var inventories = [Inventory]()
     
     // MARK: - UIViewController Methods
 
@@ -28,6 +28,7 @@ class TableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.isToolbarHidden = false
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -37,15 +38,19 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.inventories.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.tableViewCellID, for: indexPath)
+        let customTableViewCell = tableView.dequeueReusableCell(withIdentifier: self.tableViewCellID, for: indexPath) as! TableViewCell
         
-        cell.imageView?.image = UIImage(named: "box100")
+        let currentInventory = self.inventories[indexPath.row]
+        customTableViewCell.imageView?.image = currentInventory.image
+        customTableViewCell.textLabel?.text = currentInventory.name
+        customTableViewCell.detailTextLabel?.text = currentInventory.modifiedDate
+        customTableViewCell.inventoryCount.text = currentInventory.count
         
-        return cell
+        return customTableViewCell
     }
 
     /*
@@ -83,14 +88,30 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let validNavigationController = segue.destination as? UINavigationController, let validAddViewController = validNavigationController.topViewController as? AddViewController {
+            validAddViewController.delegate = self
+        }
+        else if let validAddViewController = segue.destination as? AddViewController, let validIndexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+            validAddViewController.inventory = self.inventories[validIndexPathForSelectedRow.row]
+            validAddViewController.delegate = self
+        }
     }
-    */
 
+}
+
+extension TableViewController: AddViewControllerDelegate {
+    func getInventory(_ inventory: Inventory) {
+        print(String(describing: self.presentingViewController.self))
+        if self.presentingViewController == nil {
+            self.inventories.insert(inventory, at: 0)
+        }
+        else {
+            guard let validIndexPathForSelectedRow = self.tableView.indexPathForSelectedRow else { return }
+            self.inventories.insert(inventory, at: validIndexPathForSelectedRow.row)
+        }
+        print(self.inventories.first!)
+    }
 }
