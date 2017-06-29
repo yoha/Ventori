@@ -111,6 +111,7 @@ class AddViewController: UIViewController {
         self.inventoryNameTextField.text = inventory.name
         self.inventoryImageView.image = inventory.image
         self.counterLabel.text = inventory.count
+        self.counter = Int(inventory.count)!
     }
     
     func setupInventoryRelatedControls() {
