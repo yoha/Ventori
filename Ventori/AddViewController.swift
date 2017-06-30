@@ -75,9 +75,10 @@ class AddViewController: UIViewController {
         
         self.navigationItem.hidesBackButton = true
         
-        self.setupInventoryRelatedControls()
+        self.inventoryNameTextField.returnKeyType = .done
+        self.inventoryNameTextField.delegate = self
         
-        self.addGesturesToControls()
+        self.addGesturesToControlsWithin(self)
         
         if self.presentingViewController is UINavigationController {
             self.load(Inventory(name: "Inventory Name", count: "0", image: UIImage(named: Icon.box.getName()), modifiedDate: self.getCurrentDateAndTime()))
@@ -95,15 +96,15 @@ class AddViewController: UIViewController {
     
     // MARK: - Helper Methods
     
-    func addGesturesToControls() {
-        let dismissKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(AddViewController.dismissKeyboardIfPresent))
-        self.view.addGestureRecognizer(dismissKeyboardGesture)
+    func addGesturesToControlsWithin(_ viewController: AddViewController) {
+        let dismissKeyboardGesture = UITapGestureRecognizer(target: viewController, action: #selector(AddViewController.dismissKeyboardIfPresent))
+        viewController.view.addGestureRecognizer(dismissKeyboardGesture)
         
         // -----
         
-        let tapImageViewToPresentImagePickerActionSheet = UITapGestureRecognizer(target: self, action: #selector(AddViewController.presentImagePickerActionSheet))
-        self.inventoryImageView.isUserInteractionEnabled = true
-        self.inventoryImageView.addGestureRecognizer(tapImageViewToPresentImagePickerActionSheet)
+        let tapImageViewToPresentImagePickerActionSheet = UITapGestureRecognizer(target: viewController, action: #selector(AddViewController.presentImagePickerActionSheet))
+        viewController.inventoryImageView.isUserInteractionEnabled = true
+        viewController.inventoryImageView.addGestureRecognizer(tapImageViewToPresentImagePickerActionSheet)
     }
     
     func dismissKeyboardIfPresent() {
@@ -204,3 +205,10 @@ extension AddViewController: UIImagePickerControllerDelegate {
 }
 
 extension AddViewController: UINavigationControllerDelegate {}
+
+extension AddViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
