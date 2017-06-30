@@ -77,15 +77,14 @@ class AddViewController: UIViewController {
         
         self.setupInventoryRelatedControls()
         
+        self.addGesturesToControls()
+        
         if self.presentingViewController is UINavigationController {
             self.load(Inventory(name: "Inventory Name", count: "0", image: UIImage(named: Icon.box.getName()), modifiedDate: self.getCurrentDateAndTime()))
         }
         else {
             self.load(self.inventory!)
         }
-        
-        let dismissKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(AddViewController.dismissKeyboardIfPresent))
-        self.view.addGestureRecognizer(dismissKeyboardGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +94,17 @@ class AddViewController: UIViewController {
     }
     
     // MARK: - Helper Methods
+    
+    func addGesturesToControls() {
+        let dismissKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(AddViewController.dismissKeyboardIfPresent))
+        self.view.addGestureRecognizer(dismissKeyboardGesture)
+        
+        // -----
+        
+        let tapImageViewToPresentImagePickerActionSheet = UITapGestureRecognizer(target: self, action: #selector(AddViewController.presentImagePickerActionSheet))
+        self.inventoryImageView.isUserInteractionEnabled = true
+        self.inventoryImageView.addGestureRecognizer(tapImageViewToPresentImagePickerActionSheet)
+    }
     
     func dismissKeyboardIfPresent() {
         self.inventoryNameTextField.resignFirstResponder()
@@ -114,6 +124,56 @@ class AddViewController: UIViewController {
         self.counter = Int(inventory.count)!
     }
     
+    func initAndPresentCameraWith(_ imagePickerController: UIImagePickerController) {
+        
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) == true else {
+            let noCameraAlertController = UIAlertController(title: "Error: Missing Camera",
+                                                            message: "The built-in camera may be malfunctioning",
+                                                            preferredStyle: .alert)
+            let okAlertAction = UIAlertAction(title: "OK",
+                                              style: .cancel,
+                                              handler: nil)
+            noCameraAlertController.addAction(okAlertAction)
+            self.present(noCameraAlertController, animated: true, completion: nil)
+            return
+        }
+
+        imagePickerController.sourceType = .camera
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func initAndPresentPhotoLibraryWith(_ imagePickerController: UIImagePickerController) {
+        imagePickerController.sourceType = .photoLibrary
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func presentImagePickerActionSheet() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        
+        let imagePickerAlertController = UIAlertController(title: "Choose Image From",
+                                                            message: nil,
+                                                            preferredStyle: .actionSheet)
+        let cameraAlertAction = UIAlertAction(title: "Camera",
+                                              style: .default) { [weak self] (_) in
+                                                guard let weakSelf = self else { return }
+                                                weakSelf.initAndPresentCameraWith(imagePickerController)
+        }
+        let photoLibraryAlertAction = UIAlertAction(title: "Photo Library",
+                                                    style: .default) { [weak self] (_) in
+                                                        guard let weakSelf = self else { return }
+                                                        weakSelf.initAndPresentPhotoLibraryWith(imagePickerController)
+        }
+        let cancelAlertAction = UIAlertAction(title: "Cancel",
+                                              style: .cancel,
+                                              handler: nil)
+        let _ = [cameraAlertAction, photoLibraryAlertAction, cancelAlertAction].map { (alertAction: UIAlertAction) -> Void in
+            imagePickerAlertController.addAction(alertAction)
+        }
+        self.present(imagePickerAlertController, animated: true, completion: nil)
+    }
+    
     func setupInventoryRelatedControls() {
         self.inventoryImageView.contentMode = .center
         self.inventoryImageView.layer.borderWidth = 0.5
@@ -129,3 +189,7 @@ class AddViewController: UIViewController {
 }
 
 extension AddViewController: CurrentAndDateTimeProtocol {}
+
+extension AddViewController: UIImagePickerControllerDelegate {}
+
+extension AddViewController: UINavigationControllerDelegate {}
