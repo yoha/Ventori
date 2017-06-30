@@ -175,7 +175,8 @@ class AddViewController: UIViewController {
     }
     
     func setupInventoryRelatedControls() {
-        self.inventoryImageView.contentMode = .center
+        self.inventoryImageView.contentMode = .scaleAspectFill
+        self.inventoryImageView.clipsToBounds = true
         self.inventoryImageView.layer.borderWidth = 0.5
         self.inventoryImageView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
         self.inventoryImageView.layer.cornerRadius = 5
@@ -190,6 +191,16 @@ class AddViewController: UIViewController {
 
 extension AddViewController: CurrentAndDateTimeProtocol {}
 
-extension AddViewController: UIImagePickerControllerDelegate {}
+extension AddViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
+        self.inventoryImageView.image = selectedImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
 
 extension AddViewController: UINavigationControllerDelegate {}
