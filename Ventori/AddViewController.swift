@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 protocol AddViewControllerDelegate {
     func getInventory(_ inventory: Inventory)
@@ -17,6 +18,8 @@ class AddViewController: UIViewController {
     // MARK: - Stored Properties
     
     var inventory: Inventory?
+    
+    let firebaseDatabaseReference = Database.database().reference()
     
     var counter = 0 {
         willSet {
@@ -55,6 +58,9 @@ class AddViewController: UIViewController {
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text else { return }
         self.inventory = Inventory(name: validInventoryName, count: validCounter, image: self.inventoryImageView.image, modifiedDate: self.getCurrentDateAndTime())
+        
+        self.firebaseDatabaseReference.child("inventory-items").child(validInventoryName.lowercased()).setValue(self.inventory?.convertToDictionaryForm())
+        
         self.delegate?.getInventory(self.inventory!)
         self.dismissAddViewController()
     }

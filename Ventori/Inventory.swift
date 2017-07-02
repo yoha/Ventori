@@ -13,4 +13,12 @@ struct Inventory {
     var count: String
     var image: UIImage?
     var modifiedDate: String
+    
+    func convertToDictionaryForm() -> [String: String] {
+        return [
+            "name": self.name,
+            "count": self.count,
+            "modifiedDate": self.modifiedDate
+        ]
+    }
 }
