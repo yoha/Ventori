@@ -27,7 +27,13 @@ class TableViewController: UITableViewController {
         self.title = "VENTORI"
         
         self.firebaseDatabaseReference.observe(.value) { (dataSnapshot: DataSnapshot) in
-            print(dataSnapshot.value ?? "no inventory found")
+            var inventoriesFromCloud = [Inventory]()
+            for child in dataSnapshot.children {
+                guard let inventory = Inventory(dataSnapshot: child as! DataSnapshot) else { return }
+                inventoriesFromCloud.append(inventory)
+            }
+            self.inventories = inventoriesFromCloud
+            self.tableView.reloadData()
         }
     }
     

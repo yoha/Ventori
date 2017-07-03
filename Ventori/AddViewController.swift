@@ -27,6 +27,8 @@ class AddViewController: UIViewController {
         }
     }
     
+    var inventoryFirebaseDatabaseSnapshotKey = ""
+    
     var delegate: AddViewControllerDelegate?
     
     enum Icon: String {
@@ -59,7 +61,13 @@ class AddViewController: UIViewController {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text else { return }
         self.inventory = Inventory(name: validInventoryName, count: validCounter, image: self.inventoryImageView.image, modifiedDate: self.getCurrentDateAndTime())
         
-        self.firebaseDatabaseReference.child("inventory-items").child(validInventoryName.lowercased()).setValue(self.inventory?.convertToDictionaryForm())
+        if self.presentingViewController is UINavigationController {
+            self.firebaseDatabaseReference.childByAutoId().setValue(self.inventory?.convertToDictionaryForm())
+        }
+        else {
+            self.firebaseDatabaseReference.child(self.inventoryFirebaseDatabaseSnapshotKey).updateChildValues(self.inventory!.convertToDictionaryForm())
+        }
+        
         
         self.delegate?.getInventory(self.inventory!)
         self.dismissAddViewController()
@@ -84,13 +92,19 @@ class AddViewController: UIViewController {
         self.inventoryNameTextField.returnKeyType = .done
         self.inventoryNameTextField.delegate = self
         
+        self.decrementButton.setTitle("", for: .normal)
+        self.decrementButton.setBackgroundImage(UIImage(named: Icon.decrement.getName()), for: .normal)
+        self.incrementButton.setTitle(String(), for: .normal)
+        self.incrementButton.setBackgroundImage(UIImage(named: Icon.increment.getName()), for: .normal)
+        
         self.addGesturesToControlsWithin(self)
         
         if self.presentingViewController is UINavigationController {
             self.load(Inventory(name: "Inventory Name", count: "0", image: UIImage(named: Icon.box.getName()), modifiedDate: self.getCurrentDateAndTime()))
         }
         else {
-            self.load(self.inventory!)
+            guard let validInventory = self.inventory else { return }
+            self.load(validInventory)
         }
     }
     
@@ -129,6 +143,7 @@ class AddViewController: UIViewController {
         self.inventoryImageView.image = inventory.image
         self.counterLabel.text = inventory.count
         self.counter = Int(inventory.count)!
+        self.inventoryFirebaseDatabaseSnapshotKey = inventory.firebaseDataSnapshotKey
     }
     
     func initAndPresentCameraWith(_ imagePickerController: UIImagePickerController) {
