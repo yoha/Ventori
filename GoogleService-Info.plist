@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+	<true/>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>1033400086940-omc433ns85gnht919vog295spikjmkkg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1033400086940-omc433ns85gnht919vog295spikjmkkg</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBd1AFs4BaGvxx89hU8fxWYmIw831fyeq4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1033400086940</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.corruptionofconformity.Ventori</string>
+	<key>PROJECT_ID</key>
+	<string>ventori-711f9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ventori-711f9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1033400086940:ios:41a8e0522db91cf8</string>
+	<key>DATABASE_URL</key>
+	<string>https://ventori-711f9.firebaseio.com</string>
+</dict>
+</plist>

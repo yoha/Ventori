@@ -16,9 +16,14 @@
 		6579687C1EE9197300D09D01 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6579687B1EE9197300D09D01 /* TableViewController.swift */; };
 		65940C2E1EF3DCE0000F2E1F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65940C2D1EF3DCE0000F2E1F /* TableViewCell.swift */; };
 		65E521301F025C100047415C /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E5212F1F025C100047415C /* Inventory.swift */; };
+		65F1A8761F0B7A560045FF40 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65F1A8751F0B7A560045FF40 /* GoogleService-Info.plist */; };
+		9E72B5273FFEF9E9BDFF2949 /* Pods_Ventori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9AF7B81ADE624B934678A3 /* Pods_Ventori.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11D1823AB6AC033D2DE8D6E2 /* Pods-Ventori.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ventori.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ventori/Pods-Ventori.debug.xcconfig"; sourceTree = "<group>"; };
+		4D50800CCA3C5C3156C729A6 /* Pods-Ventori.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ventori.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ventori/Pods-Ventori.release.xcconfig"; sourceTree = "<group>"; };
+		4F9AF7B81ADE624B934678A3 /* Pods_Ventori.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ventori.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		653662831F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDateAndTimeProtocol.swift; sourceTree = "<group>"; };
 		6541A81A1EE95A41000EE9A4 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		657968661EE9161600D09D01 /* Ventori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ventori.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +35,7 @@
 		6579687B1EE9197300D09D01 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		65940C2D1EF3DCE0000F2E1F /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		65E5212F1F025C100047415C /* Inventory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		65F1A8751F0B7A560045FF40 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E72B5273FFEF9E9BDFF2949 /* Pods_Ventori.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,8 +53,11 @@
 		6579685D1EE9161600D09D01 = {
 			isa = PBXGroup;
 			children = (
+				65F1A8751F0B7A560045FF40 /* GoogleService-Info.plist */,
 				657968681EE9161600D09D01 /* Ventori */,
 				657968671EE9161600D09D01 /* Products */,
+				697C97810DC7288CC2927AED /* Pods */,
+				A7B1C652534D6622E7EE1372 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +86,23 @@
 			path = Ventori;
 			sourceTree = "<group>";
 		};
+		697C97810DC7288CC2927AED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				11D1823AB6AC033D2DE8D6E2 /* Pods-Ventori.debug.xcconfig */,
+				4D50800CCA3C5C3156C729A6 /* Pods-Ventori.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A7B1C652534D6622E7EE1372 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F9AF7B81ADE624B934678A3 /* Pods_Ventori.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +110,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 657968781EE9161600D09D01 /* Build configuration list for PBXNativeTarget "Ventori" */;
 			buildPhases = (
+				B09F3CD46F864A4FA4ED6EED /* [CP] Check Pods Manifest.lock */,
 				657968621EE9161600D09D01 /* Sources */,
 				657968631EE9161600D09D01 /* Frameworks */,
 				657968641EE9161600D09D01 /* Resources */,
+				5557D5B0449CF2FF3316A7F0 /* [CP] Embed Pods Frameworks */,
+				630A587134872A0DCE240797 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,12 +168,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				657968741EE9161600D09D01 /* LaunchScreen.storyboard in Resources */,
+				65F1A8761F0B7A560045FF40 /* GoogleService-Info.plist in Resources */,
 				657968711EE9161600D09D01 /* Assets.xcassets in Resources */,
 				6579686F1EE9161600D09D01 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5557D5B0449CF2FF3316A7F0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ventori/Pods-Ventori-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		630A587134872A0DCE240797 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ventori/Pods-Ventori-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B09F3CD46F864A4FA4ED6EED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		657968621EE9161600D09D01 /* Sources */ = {
@@ -290,6 +369,7 @@
 		};
 		657968791EE9161600D09D01 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11D1823AB6AC033D2DE8D6E2 /* Pods-Ventori.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4Z5JKF2M6S;
@@ -304,6 +384,7 @@
 		};
 		6579687A1EE9161600D09D01 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D50800CCA3C5C3156C729A6 /* Pods-Ventori.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4Z5JKF2M6S;
