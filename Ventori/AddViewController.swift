@@ -16,7 +16,7 @@ class AddViewController: UIViewController {
     
     // MARK: - Stored Properties
     
-    var inventory: Inventory?
+    var inventory: Inventory!
     
     var counter = 0 {
         willSet {
@@ -55,7 +55,7 @@ class AddViewController: UIViewController {
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text else { return }
         self.inventory = Inventory(name: validInventoryName, count: validCounter, image: self.inventoryImageView.image, modifiedDate: self.getCurrentDateAndTime())
-        self.delegate?.getInventory(self.inventory!)
+        self.delegate?.getInventory(self.inventory)
         self.dismissAddViewController()
     }
     
@@ -75,6 +75,11 @@ class AddViewController: UIViewController {
         
         self.navigationItem.hidesBackButton = true
         
+        self.decrementButton.setTitle(String(), for: .normal)
+        self.decrementButton.setImage(UIImage(named: Icon.decrement.getName()), for: .normal)
+        self.incrementButton.setTitle("", for: .normal)
+        self.incrementButton.setImage(UIImage(named: Icon.increment.getName()), for: .normal)
+        
         self.inventoryNameTextField.returnKeyType = .done
         self.inventoryNameTextField.delegate = self
         
@@ -84,7 +89,7 @@ class AddViewController: UIViewController {
             self.load(Inventory(name: "Inventory Name", count: "0", image: UIImage(named: Icon.box.getName()), modifiedDate: self.getCurrentDateAndTime()))
         }
         else {
-            self.load(self.inventory!)
+            self.load(self.inventory)
         }
     }
     
