@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 protocol AddViewControllerDelegate {
     func getInventory(_ inventory: Inventory)
@@ -58,9 +58,21 @@ class AddViewController: UIViewController {
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text else { return }
         if self.presentingViewController is UINavigationController {
-            self.inventory = Inventory(name: validInventoryName, count: validCounter, image: self.inventoryImageView.image, modifiedDate: self.getCurrentDateAndTime())
+            self.inventory = Inventory(name: validInventoryName,
+                                       count: validCounter,
+                                       image: self.inventoryImageView.image,
+                                       modifiedDate: self.getCurrentDateAndTime())
             self.firebaseDatabaseReference.childByAutoId().setValue(Inventory.returnDictionaryFormat(from: self.inventory))
         }
+        else {
+            self.inventory = Inventory(name: self.inventory.name,
+                                       count: self.inventory.count,
+                                       image: self.inventory.image,
+                                       modifiedDate: self.inventory.modifiedDate,
+                                       dataSnapshotKey: self.inventory.firebaseDataSnapshotKey)
+            self.firebaseDatabaseReference.child(self.inventory.firebaseDataSnapshotKey).setValue(self.inventory)
+        }
+        
         // TODO: Remove protocol
 //        self.delegate?.getInventory(self.inventory)
         self.dismissAddViewController()

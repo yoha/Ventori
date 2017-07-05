@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TableViewController: UITableViewController {
     
@@ -16,12 +17,21 @@ class TableViewController: UITableViewController {
     
     var inventories = [Inventory]()
     
+    var firebaseDatabaseReference: DatabaseReference = Database.database().reference(withPath: "inventory-items")
+    
     // MARK: - UIViewController Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "VENTORI"
+        
+        self.firebaseDatabaseReference.observe(.value) { (dataSnapshot: DataSnapshot) in
+            self.inventories = dataSnapshot.children.map({ (child) -> Inventory in
+                return Inventory(snapshot: child as! DataSnapshot)
+            })
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
