@@ -20,6 +20,7 @@ class AddViewController: UIViewController {
     var inventory: Inventory!
     
     var firebaseDatabaseReference: DatabaseReference = Database.database().reference(withPath: "inventory-items")
+    var firebaseDatabaseSnapshotKey: String!
     
     var counter = 0 {
         willSet {
@@ -57,20 +58,16 @@ class AddViewController: UIViewController {
     
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text else { return }
+        self.inventory = Inventory(name: validInventoryName,
+                                   count: validCounter,
+                                   image: self.inventoryImageView.image,
+                                   modifiedDate: self.getCurrentDateAndTime())
+        
         if self.presentingViewController is UINavigationController {
-            self.inventory = Inventory(name: validInventoryName,
-                                       count: validCounter,
-                                       image: self.inventoryImageView.image,
-                                       modifiedDate: self.getCurrentDateAndTime())
             self.firebaseDatabaseReference.childByAutoId().setValue(Inventory.returnDictionaryFormat(from: self.inventory))
         }
         else {
-            self.inventory = Inventory(name: self.inventory.name,
-                                       count: self.inventory.count,
-                                       image: self.inventory.image,
-                                       modifiedDate: self.inventory.modifiedDate,
-                                       dataSnapshotKey: self.inventory.firebaseDataSnapshotKey)
-            self.firebaseDatabaseReference.child(self.inventory.firebaseDataSnapshotKey).setValue(self.inventory)
+            self.firebaseDatabaseReference.child(self.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: self.inventory))
         }
         
         // TODO: Remove protocol
@@ -114,7 +111,6 @@ class AddViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.navigationController?.isToolbarHidden = true
     }
     
@@ -147,6 +143,7 @@ class AddViewController: UIViewController {
         self.inventoryImageView.image = inventory.image
         self.counterLabel.text = inventory.count
         self.counter = Int(inventory.count)!
+        self.firebaseDatabaseSnapshotKey = inventory.firebaseDataSnapshotKey
     }
     
     func initAndPresentCameraWith(_ imagePickerController: UIImagePickerController) {
