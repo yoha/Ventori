@@ -101,25 +101,8 @@ class TableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let validNavigationController = segue.destination as? UINavigationController, let validAddViewController = validNavigationController.topViewController as? AddViewController {
-            validAddViewController.delegate = self
-        }
-        else if let validAddViewController = segue.destination as? AddViewController, let validIndexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+        if let validAddViewController = segue.destination as? AddViewController, let validIndexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
             validAddViewController.inventory = self.inventories[validIndexPathForSelectedRow.row]
-            validAddViewController.delegate = self
-        }
-    }
-
-}
-
-extension TableViewController: AddViewControllerDelegate {
-    func getInventory(_ inventory: Inventory) {
-        if self.presentedViewController is UINavigationController {
-            self.inventories.insert(inventory, at: 0)
-        }
-        else {
-            guard let validIndexPathForSelectedRow = self.tableView.indexPathForSelectedRow else { return }
-            self.inventories[validIndexPathForSelectedRow.row] = inventory
         }
     }
 }

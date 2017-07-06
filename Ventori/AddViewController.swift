@@ -9,10 +9,6 @@
 import UIKit
 import Firebase
 
-protocol AddViewControllerDelegate {
-    func getInventory(_ inventory: Inventory)
-}
-
 class AddViewController: UIViewController {
     
     // MARK: - Stored Properties
@@ -27,8 +23,6 @@ class AddViewController: UIViewController {
             self.counterLabel.text = String(describing: newValue)
         }
     }
-    
-    var delegate: AddViewControllerDelegate?
     
     enum Icon: String {
         case box, decrement, increment
@@ -58,6 +52,7 @@ class AddViewController: UIViewController {
     
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text else { return }
+        
         self.inventory = Inventory(name: validInventoryName,
                                    count: validCounter,
                                    image: self.inventoryImageView.image,
@@ -70,8 +65,6 @@ class AddViewController: UIViewController {
             self.firebaseDatabaseReference.child(self.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: self.inventory))
         }
         
-        // TODO: Remove protocol
-//        self.delegate?.getInventory(self.inventory)
         self.dismissAddViewController()
     }
     
@@ -107,6 +100,9 @@ class AddViewController: UIViewController {
         else {
             self.load(self.inventory)
         }
+
+        self.inventoryNameTextField.autocorrectionType = .no
+        self.inventoryNameTextField.spellCheckingType = .no
     }
     
     override func viewWillAppear(_ animated: Bool) {
