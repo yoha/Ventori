@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class TableViewController: UITableViewController {
     
@@ -18,14 +19,11 @@ class TableViewController: UITableViewController {
     var inventories = [Inventory]()
     
     var firebaseDatabaseReference: DatabaseReference = Database.database().reference(withPath: "inventory-items")
+    var firebaseStorageReference: StorageReference = Storage.storage().reference(withPath: "inventory-images")
     
-    // MARK: - UIViewController Methods
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = "VENTORI"
-        
+    // MARK: - Helper Methods
+    
+    func updateInventoriesInTableView() {
         self.firebaseDatabaseReference.observe(.value) { (dataSnapshot: DataSnapshot) in
             self.inventories = dataSnapshot.children.map({ (child) -> Inventory in
                 return Inventory(snapshot: child as! DataSnapshot)
@@ -33,10 +31,19 @@ class TableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+
+    // MARK: - UIViewController Methods
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = "VENTORI"
+        self.updateInventoriesInTableView()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         self.navigationController?.isToolbarHidden = false
         self.tableView.reloadData()
     }
@@ -55,7 +62,9 @@ class TableViewController: UITableViewController {
         let customTableViewCell = tableView.dequeueReusableCell(withIdentifier: self.tableViewCellID, for: indexPath) as! TableViewCell
         
         let currentInventory = self.inventories[indexPath.row]
-        customTableViewCell.imageView?.image = currentInventory.image
+        // TODO: - remove me
+        print("mmmmm:\(currentInventory.image)")
+        customTableViewCell.imageView?.image = self.returnImageFrom(currentInventory.image, within: self.firebaseStorageReference)
         customTableViewCell.textLabel?.text = currentInventory.name
         customTableViewCell.detailTextLabel?.text = currentInventory.modifiedDate
         customTableViewCell.inventoryCount.text = currentInventory.count
@@ -106,3 +115,8 @@ class TableViewController: UITableViewController {
         }
     }
 }
+
+
+// MARK: - Extensions
+
+extension TableViewController: StringToImageConversion {}

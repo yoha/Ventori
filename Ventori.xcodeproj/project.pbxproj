@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6522A6F51F109ECB0002644C /* StringToImageConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6522A6F41F109ECB0002644C /* StringToImageConversion.swift */; };
+		6522A6FC1F10A3800002644C /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6522A6FB1F10A3800002644C /* Icon.swift */; };
 		653662841F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653662831F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift */; };
 		6541A81B1EE95A41000EE9A4 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541A81A1EE95A41000EE9A4 /* AddViewController.swift */; };
 		6579686A1EE9161600D09D01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657968691EE9161600D09D01 /* AppDelegate.swift */; };
@@ -24,6 +26,8 @@
 		11D1823AB6AC033D2DE8D6E2 /* Pods-Ventori.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ventori.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ventori/Pods-Ventori.debug.xcconfig"; sourceTree = "<group>"; };
 		4D50800CCA3C5C3156C729A6 /* Pods-Ventori.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ventori.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ventori/Pods-Ventori.release.xcconfig"; sourceTree = "<group>"; };
 		4F9AF7B81ADE624B934678A3 /* Pods_Ventori.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ventori.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6522A6F41F109ECB0002644C /* StringToImageConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringToImageConversion.swift; sourceTree = "<group>"; };
+		6522A6FB1F10A3800002644C /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		653662831F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDateAndTimeProtocol.swift; sourceTree = "<group>"; };
 		6541A81A1EE95A41000EE9A4 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		657968661EE9161600D09D01 /* Ventori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ventori.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +54,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6522A6F61F109F2E0002644C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6522A6F41F109ECB0002644C /* StringToImageConversion.swift */,
+				653662831F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift */,
+			);
+			name = Protocol;
+			sourceTree = "<group>";
+		};
+		6522A6F71F109F3E0002644C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6541A81A1EE95A41000EE9A4 /* AddViewController.swift */,
+				6579687B1EE9197300D09D01 /* TableViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		6522A6F81F109F5F0002644C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6522A6FB1F10A3800002644C /* Icon.swift */,
+				65E5212F1F025C100047415C /* Inventory.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6522A6F91F109F7B0002644C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6579686D1EE9161600D09D01 /* Main.storyboard */,
+				657968701EE9161600D09D01 /* Assets.xcassets */,
+				657968721EE9161600D09D01 /* LaunchScreen.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		6522A6FA1F109FA60002644C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65940C2D1EF3DCE0000F2E1F /* TableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		6579685D1EE9161600D09D01 = {
 			isa = PBXGroup;
 			children = (
@@ -72,15 +121,12 @@
 		657968681EE9161600D09D01 /* Ventori */ = {
 			isa = PBXGroup;
 			children = (
-				65E5212F1F025C100047415C /* Inventory.swift */,
-				65940C2D1EF3DCE0000F2E1F /* TableViewCell.swift */,
-				653662831F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift */,
-				6541A81A1EE95A41000EE9A4 /* AddViewController.swift */,
-				6579687B1EE9197300D09D01 /* TableViewController.swift */,
+				6522A6F81F109F5F0002644C /* Model */,
+				6522A6F61F109F2E0002644C /* Protocol */,
+				6522A6FA1F109FA60002644C /* View */,
+				6522A6F71F109F3E0002644C /* ViewController */,
+				6522A6F91F109F7B0002644C /* UI */,
 				657968691EE9161600D09D01 /* AppDelegate.swift */,
-				6579686D1EE9161600D09D01 /* Main.storyboard */,
-				657968701EE9161600D09D01 /* Assets.xcassets */,
-				657968721EE9161600D09D01 /* LaunchScreen.storyboard */,
 				657968751EE9161600D09D01 /* Info.plist */,
 			);
 			path = Ventori;
@@ -229,11 +275,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6522A6F51F109ECB0002644C /* StringToImageConversion.swift in Sources */,
 				653662841F03E9E300DA6722 /* CurrentDateAndTimeProtocol.swift in Sources */,
 				6579686A1EE9161600D09D01 /* AppDelegate.swift in Sources */,
 				65940C2E1EF3DCE0000F2E1F /* TableViewCell.swift in Sources */,
 				65E521301F025C100047415C /* Inventory.swift in Sources */,
 				6579687C1EE9197300D09D01 /* TableViewController.swift in Sources */,
+				6522A6FC1F10A3800002644C /* Icon.swift in Sources */,
 				6541A81B1EE95A41000EE9A4 /* AddViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

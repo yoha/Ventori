@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class AddViewController: UIViewController {
     
@@ -15,24 +16,17 @@ class AddViewController: UIViewController {
     
     var inventory: Inventory!
     
-    var firebaseDatabaseReference: DatabaseReference = Database.database().reference(withPath: "inventory-items")
     var firebaseDatabaseSnapshotKey: String!
+    
+    // TODO: - The following two are repetitive in two VCs. See if you can move this to StringToImageConversion protocol
+    
+    var firebaseDatabaseReference: DatabaseReference = Database.database().reference(withPath: "inventory-items")
+    
+    var firebaseStorageReference: StorageReference = Storage.storage().reference(withPath: "inventory-images")
     
     var counter = 0 {
         willSet {
             self.counterLabel.text = String(describing: newValue)
-        }
-    }
-    
-    enum Icon: String {
-        case box, decrement, increment
-        
-        func getName() -> String {
-            switch self {
-            case .box: return "box100"
-            case .decrement: return "Minus100"
-            case .increment: return "Plus100"
-            }
         }
     }
     
@@ -51,21 +45,25 @@ class AddViewController: UIViewController {
     }
     
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
-        guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text else { return }
+        guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text, let validImage = self.inventoryImageView.image, let validImageData = UIImageJPEGRepresentation(validImage, 0.5) else { return }
         
-        self.inventory = Inventory(name: validInventoryName,
-                                   count: validCounter,
-                                   image: self.inventoryImageView.image,
-                                   modifiedDate: self.getCurrentDateAndTime())
-        
-        if self.presentingViewController is UINavigationController {
-            self.firebaseDatabaseReference.childByAutoId().setValue(Inventory.returnDictionaryFormat(from: self.inventory))
-        }
-        else {
-            self.firebaseDatabaseReference.child(self.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: self.inventory))
-        }
-        
-        self.dismissAddViewController()
+        let databaseReferenceWithChildAutoID = self.firebaseDatabaseReference.childByAutoId()
+
+        self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData).observe(.success, handler: { (storageTaskSnapshot: StorageTaskSnapshot) in
+            guard let validInventoryImageDownloadURL = storageTaskSnapshot.metadata?.downloadURL()?.absoluteString else { return }
+            self.inventory = Inventory(name: validInventoryName,
+                                       count: validCounter,
+                                       image: validInventoryImageDownloadURL,
+                                       modifiedDate: self.getCurrentDateAndTime())
+            
+            if self.presentingViewController is UINavigationController {
+                databaseReferenceWithChildAutoID.setValue(Inventory.returnDictionaryFormat(from: self.inventory))
+            }
+            else {
+                self.firebaseDatabaseReference.child(self.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: self.inventory))
+            }
+            self.dismissAddViewController()
+        })
     }
     
     @IBAction func decrementButtonDidTouch(_ sender: UIButton) {
@@ -95,7 +93,7 @@ class AddViewController: UIViewController {
         self.addGesturesToControlsWithin(self)
         
         if self.presentingViewController is UINavigationController {
-            self.load(Inventory(name: "Inventory Name", count: "0", image: UIImage(named: Icon.box.getName()), modifiedDate: self.getCurrentDateAndTime()))
+            self.load(Inventory(name: "Inventory Name", count: "0", image: Icon.box.getName(), modifiedDate: self.getCurrentDateAndTime()))
         }
         else {
             self.load(self.inventory)
@@ -136,7 +134,7 @@ class AddViewController: UIViewController {
     
     func load(_ inventory: Inventory) {
         self.inventoryNameTextField.text = inventory.name
-        self.inventoryImageView.image = inventory.image
+        self.inventoryImageView.image = self.returnImageFrom(inventory.image, within: self.firebaseStorageReference)
         self.counterLabel.text = inventory.count
         self.counter = Int(inventory.count)!
         self.firebaseDatabaseSnapshotKey = inventory.firebaseDataSnapshotKey
@@ -207,7 +205,11 @@ class AddViewController: UIViewController {
     }
 }
 
+// MARK: - Extensions
+
 extension AddViewController: CurrentAndDateTimeProtocol {}
+
+extension AddViewController: StringToImageConversion {}
 
 extension AddViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
