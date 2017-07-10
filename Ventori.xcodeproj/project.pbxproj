@@ -162,6 +162,7 @@
 				657968641EE9161600D09D01 /* Resources */,
 				5557D5B0449CF2FF3316A7F0 /* [CP] Embed Pods Frameworks */,
 				630A587134872A0DCE240797 /* [CP] Copy Pods Resources */,
+				6522A6FD1F10CE4D0002644C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -252,6 +253,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ventori/Pods-Ventori-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6522A6FD1F10CE4D0002644C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
 		};
 		B09F3CD46F864A4FA4ED6EED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

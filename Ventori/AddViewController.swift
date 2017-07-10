@@ -49,13 +49,25 @@ class AddViewController: UIViewController {
         
         let databaseReferenceWithChildAutoID = self.firebaseDatabaseReference.childByAutoId()
 
-        self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData).observe(.success, handler: { (storageTaskSnapshot: StorageTaskSnapshot) in
-            guard let validInventoryImageDownloadURL = storageTaskSnapshot.metadata?.downloadURL()?.absoluteString else { return }
+        // TODO: remmove me
+        print("yryryryryr:\(self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg"))")
+        
+        self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData, metadata: nil) { (storageMetaData: StorageMetadata?, error: Error?) in
+            guard let validMetadata = storageMetaData, let validInventoryImageDownloadPath = validMetadata.name else {
+                print("Error has occured: \(String(describing: error?.localizedDescription))")
+                return
+            }
+            // TODO: remove me
+            print("metadata:\(validMetadata.path)")
+            print("name:\(validMetadata.name)")
+            print("cccc:\(validInventoryImageDownloadPath)")
             self.inventory = Inventory(name: validInventoryName,
                                        count: validCounter,
-                                       image: validInventoryImageDownloadURL,
+                                       image: validInventoryImageDownloadPath,
                                        modifiedDate: self.getCurrentDateAndTime())
             
+            // TODO: remove me
+            print("ivnent:\(self.inventory)")
             if self.presentingViewController is UINavigationController {
                 databaseReferenceWithChildAutoID.setValue(Inventory.returnDictionaryFormat(from: self.inventory))
             }
@@ -63,7 +75,7 @@ class AddViewController: UIViewController {
                 self.firebaseDatabaseReference.child(self.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: self.inventory))
             }
             self.dismissAddViewController()
-        })
+        }
     }
     
     @IBAction func decrementButtonDidTouch(_ sender: UIButton) {
