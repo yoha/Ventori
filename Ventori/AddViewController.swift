@@ -48,26 +48,17 @@ class AddViewController: UIViewController {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text, let validImage = self.inventoryImageView.image, let validImageData = UIImageJPEGRepresentation(validImage, 0.5) else { return }
         
         let databaseReferenceWithChildAutoID = self.firebaseDatabaseReference.childByAutoId()
-
-        // TODO: remmove me
-        print("yryryryryr:\(self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg"))")
         
         self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData, metadata: nil) { (storageMetaData: StorageMetadata?, error: Error?) in
             guard let validMetadata = storageMetaData, let validInventoryImageDownloadPath = validMetadata.name else {
                 print("Error has occured: \(String(describing: error?.localizedDescription))")
                 return
             }
-            // TODO: remove me
-            print("metadata:\(validMetadata.path)")
-            print("name:\(validMetadata.name)")
-            print("cccc:\(validInventoryImageDownloadPath)")
             self.inventory = Inventory(name: validInventoryName,
                                        count: validCounter,
                                        image: validInventoryImageDownloadPath,
                                        modifiedDate: self.getCurrentDateAndTime())
             
-            // TODO: remove me
-            print("ivnent:\(self.inventory)")
             if self.presentingViewController is UINavigationController {
                 databaseReferenceWithChildAutoID.setValue(Inventory.returnDictionaryFormat(from: self.inventory))
             }
@@ -146,8 +137,9 @@ class AddViewController: UIViewController {
     
     func load(_ inventory: Inventory) {
         self.inventoryNameTextField.text = inventory.name
-        self.inventoryImageView.image = self.returnImageFrom(inventory.image, within: self.firebaseStorageReference)
-        self.counterLabel.text = inventory.count
+        self.returnImageFromURL(inventory.image, within: self.firebaseStorageReference) {
+            self.inventoryImageView.image = $0
+        }
         self.counter = Int(inventory.count)!
         self.firebaseDatabaseSnapshotKey = inventory.firebaseDataSnapshotKey
     }

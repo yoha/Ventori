@@ -62,9 +62,9 @@ class TableViewController: UITableViewController {
         let customTableViewCell = tableView.dequeueReusableCell(withIdentifier: self.tableViewCellID, for: indexPath) as! TableViewCell
         
         let currentInventory = self.inventories[indexPath.row]
-        // TODO: - remove me
-        print("mmmmm:\(currentInventory.image)")
-        customTableViewCell.imageView?.image = self.returnImageFrom(currentInventory.image, within: self.firebaseStorageReference)
+        self.returnImageFromURL(currentInventory.image, within: self.firebaseStorageReference) { (image: UIImage) in
+            customTableViewCell.imageView?.image = image
+        }
         customTableViewCell.textLabel?.text = currentInventory.name
         customTableViewCell.detailTextLabel?.text = currentInventory.modifiedDate
         customTableViewCell.inventoryCount.text = currentInventory.count
