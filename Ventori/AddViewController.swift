@@ -49,23 +49,23 @@ class AddViewController: UIViewController {
         
         let databaseReferenceWithChildAutoID = self.firebaseDatabaseReference.childByAutoId()
         
-        self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData, metadata: nil) { (storageMetaData: StorageMetadata?, error: Error?) in
-            guard let validMetadata = storageMetaData, let validInventoryImageDownloadPath = validMetadata.name else {
+        self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData, metadata: nil) { [weak self] (storageMetaData: StorageMetadata?, error: Error?) in
+            guard let weakSelf = self, let validMetadata = storageMetaData, let validInventoryImageDownloadPath = validMetadata.name else {
                 print("Error has occured: \(String(describing: error?.localizedDescription))")
                 return
             }
-            self.inventory = Inventory(name: validInventoryName,
+            weakSelf.inventory = Inventory(name: validInventoryName,
                                        count: validCounter,
                                        image: validInventoryImageDownloadPath,
-                                       modifiedDate: self.getCurrentDateAndTime())
+                                       modifiedDate: weakSelf.getCurrentDateAndTime())
             
-            if self.presentingViewController is UINavigationController {
-                databaseReferenceWithChildAutoID.setValue(Inventory.returnDictionaryFormat(from: self.inventory))
+            if weakSelf.presentingViewController is UINavigationController {
+                databaseReferenceWithChildAutoID.setValue(Inventory.returnDictionaryFormat(from: weakSelf.inventory))
             }
             else {
-                self.firebaseDatabaseReference.child(self.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: self.inventory))
+                weakSelf.firebaseDatabaseReference.child(weakSelf.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: weakSelf.inventory))
             }
-            self.dismissAddViewController()
+            weakSelf.dismissAddViewController()
         }
     }
     

@@ -12,14 +12,14 @@ import FirebaseStorage
 protocol StringToImageConversion { }
 
 extension StringToImageConversion where Self: UIViewController {
-    func returnImageFromURL(_ downloadImageURL: String, within storageReference: StorageReference, completion: @escaping (_ image: UIImage) -> Void) {
+    func returnImageFromURL(_ downloadImageURL: String, within storageReference: StorageReference, completionHandler: @escaping (_ image: UIImage) -> Void) {
         storageReference.child(downloadImageURL).getData(maxSize: 1 * 1024 * 1024) { (inventory: Data?, error: Error?) in
             if let validError = error {
                 print("Error downloading inventory image: \(validError.localizedDescription)")
-                completion(UIImage(named: Icon.box.getName())!)
+                completionHandler(UIImage(named: Icon.box.getName())!)
             }
             else if let validInventory = inventory, let validImage = UIImage(data: validInventory) {
-                completion(validImage)
+                completionHandler(validImage)
             }
         }
     }

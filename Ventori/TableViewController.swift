@@ -24,11 +24,12 @@ class TableViewController: UITableViewController {
     // MARK: - Helper Methods
     
     func updateInventoriesInTableView() {
-        self.firebaseDatabaseReference.observe(.value) { (dataSnapshot: DataSnapshot) in
-            self.inventories = dataSnapshot.children.map({ (child) -> Inventory in
+        self.firebaseDatabaseReference.observe(.value) { [weak self] (dataSnapshot: DataSnapshot) in
+            guard let weakSelf = self else { return }
+            weakSelf.inventories = dataSnapshot.children.map({ (child) -> Inventory in
                 return Inventory(snapshot: child as! DataSnapshot)
             })
-            self.tableView.reloadData()
+            weakSelf.tableView.reloadData()
         }
     }
 
