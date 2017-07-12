@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseStorage
 
 class AddViewController: UIViewController {
@@ -16,13 +15,9 @@ class AddViewController: UIViewController {
     
     var inventory: Inventory!
     
+    var appDelegate: AppDelegate!
+    
     var firebaseDatabaseSnapshotKey: String!
-    
-    // TODO: - The following two are repetitive in two VCs. See if you can move this to StringToImageConversion protocol
-    
-    var firebaseDatabaseReference: DatabaseReference = Database.database().reference(withPath: "inventory-items")
-    
-    var firebaseStorageReference: StorageReference = Storage.storage().reference(withPath: "inventory-images")
     
     var counter = 0 {
         willSet {
@@ -47,9 +42,9 @@ class AddViewController: UIViewController {
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text, let validImage = self.inventoryImageView.image, let validImageData = UIImageJPEGRepresentation(validImage, 0.5) else { return }
         
-        let databaseReferenceWithChildAutoID = self.firebaseDatabaseReference.childByAutoId()
+        let databaseReferenceWithChildAutoID = self.appDelegate.firebaseDatabaseReference.childByAutoId()
         
-        self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData, metadata: nil) { [weak self] (storageMetaData: StorageMetadata?, error: Error?) in
+        self.appDelegate.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData, metadata: nil) { [weak self] (storageMetaData: StorageMetadata?, error: Error?) in
             guard let weakSelf = self, let validMetadata = storageMetaData, let validInventoryImageDownloadPath = validMetadata.name else {
                 print("Error has occured: \(String(describing: error?.localizedDescription))")
                 return
@@ -63,7 +58,7 @@ class AddViewController: UIViewController {
                 databaseReferenceWithChildAutoID.setValue(Inventory.returnDictionaryFormat(from: weakSelf.inventory))
             }
             else {
-                weakSelf.firebaseDatabaseReference.child(weakSelf.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: weakSelf.inventory))
+                weakSelf.appDelegate.firebaseDatabaseReference.child(weakSelf.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: weakSelf.inventory))
             }
             weakSelf.dismissAddViewController()
         }
@@ -137,8 +132,10 @@ class AddViewController: UIViewController {
     
     func load(_ inventory: Inventory) {
         self.inventoryNameTextField.text = inventory.name
-        self.returnImageFromURL(inventory.image, within: self.firebaseStorageReference) {
-            self.inventoryImageView.image = $0
+        self.returnImageFromURL(inventory.image, within: self.appDelegate.firebaseStorageReference) { (image: UIImage) -> Void in
+            DispatchQueue.main.async {
+                self.inventoryImageView.image = image
+            }
         }
         self.counter = Int(inventory.count)!
         self.firebaseDatabaseSnapshotKey = inventory.firebaseDataSnapshotKey

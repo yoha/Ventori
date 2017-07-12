@@ -8,11 +8,15 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var firebaseDatabaseReference: DatabaseReference!
+    var firebaseStorageReference: StorageReference!
     
     override init() {
         super.init()
@@ -23,7 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        self.firebaseDatabaseReference = Database.database().reference(withPath: "inventory-items")
+        self.firebaseStorageReference = Storage.storage().reference(withPath: "inventory-images")
+        
         return true
     }
 

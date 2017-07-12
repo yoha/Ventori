@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseStorage
 
 class TableViewController: UITableViewController {
     
@@ -18,13 +17,12 @@ class TableViewController: UITableViewController {
     
     var inventories = [Inventory]()
     
-    var firebaseDatabaseReference: DatabaseReference = Database.database().reference(withPath: "inventory-items")
-    var firebaseStorageReference: StorageReference = Storage.storage().reference(withPath: "inventory-images")
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     // MARK: - Helper Methods
     
     func updateInventoriesInTableView() {
-        self.firebaseDatabaseReference.observe(.value) { [weak self] (dataSnapshot: DataSnapshot) in
+        self.appDelegate.firebaseDatabaseReference.observe(.value) { [weak self] (dataSnapshot: DataSnapshot) in
             guard let weakSelf = self else { return }
             weakSelf.inventories = dataSnapshot.children.map({ (child) -> Inventory in
                 return Inventory(snapshot: child as! DataSnapshot)
@@ -63,8 +61,10 @@ class TableViewController: UITableViewController {
         let customTableViewCell = tableView.dequeueReusableCell(withIdentifier: self.tableViewCellID, for: indexPath) as! TableViewCell
         
         let currentInventory = self.inventories[indexPath.row]
-        self.returnImageFromURL(currentInventory.image, within: self.firebaseStorageReference) { (image: UIImage) in
-            customTableViewCell.imageView?.image = image
+        self.returnImageFromURL(currentInventory.image, within: self.appDelegate.firebaseStorageReference) { (image: UIImage) in
+            DispatchQueue.main.async {
+                customTableViewCell.imageView?.image = image
+            }
         }
         customTableViewCell.textLabel?.text = currentInventory.name
         customTableViewCell.detailTextLabel?.text = currentInventory.modifiedDate
@@ -111,8 +111,12 @@ class TableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let validNavigationController = segue.destination as? UINavigationController, let validAddViewController = validNavigationController.topViewController as? AddViewController {
+            validAddViewController.appDelegate = self.appDelegate
+        }
         if let validAddViewController = segue.destination as? AddViewController, let validIndexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
             validAddViewController.inventory = self.inventories[validIndexPathForSelectedRow.row]
+            validAddViewController.appDelegate = self.appDelegate
         }
     }
 }
