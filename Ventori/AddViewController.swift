@@ -85,8 +85,12 @@ class AddViewController: UIViewController {
         self.incrementButton.setTitle("", for: .normal)
         self.incrementButton.setImage(UIImage(named: Icon.increment.getName()), for: .normal)
         
-        self.inventoryNameTextField.returnKeyType = .done
         self.inventoryNameTextField.delegate = self
+        self.inventoryNameTextField.returnKeyType = .done
+        self.inventoryNameTextField.autocorrectionType = .no
+        self.inventoryNameTextField.spellCheckingType = .no
+        
+        self.inventoryImageView.applyCircleAndBorder()
         
         self.addGesturesToControlsWithin(self)
         
@@ -96,9 +100,6 @@ class AddViewController: UIViewController {
         else {
             self.load(self.inventory)
         }
-
-        self.inventoryNameTextField.autocorrectionType = .no
-        self.inventoryNameTextField.spellCheckingType = .no
     }
     
     override func viewWillAppear(_ animated: Bool) {

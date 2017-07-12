@@ -61,6 +61,7 @@ class TableViewController: UITableViewController {
         let customTableViewCell = tableView.dequeueReusableCell(withIdentifier: self.tableViewCellID, for: indexPath) as! TableViewCell
         
         let currentInventory = self.inventories[indexPath.row]
+        
         self.returnImageFromURL(currentInventory.image, within: self.appDelegate.firebaseStorageReference) { (image: UIImage) in
             DispatchQueue.main.async {
                 customTableViewCell.imageView?.image = image
