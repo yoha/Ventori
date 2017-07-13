@@ -90,7 +90,9 @@ class AddViewController: UIViewController {
         self.inventoryNameTextField.autocorrectionType = .no
         self.inventoryNameTextField.spellCheckingType = .no
         
-        self.inventoryImageView.applyCircleAndBorder()
+        self.inventoryImageView.contentMode = .scaleToFill
+        self.inventoryImageView.layer.cornerRadius = 8
+        self.inventoryImageView.layer.masksToBounds = true
         
         self.addGesturesToControlsWithin(self)
         
