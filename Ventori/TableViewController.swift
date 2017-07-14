@@ -77,7 +77,13 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let inventoryItem = self.inventories[indexPath.row]
-            inventoryItem.firebaseDatabaseReference?.removeValue()
+            self.appDelegate.firebaseStorageReference.child(inventoryItem.image).delete(completion: { (error: Error?) in
+                guard error == nil else {
+                    print("Error removing image file: \(String(describing: error?.localizedDescription))")
+                    return
+                }
+                inventoryItem.firebaseDatabaseReference?.removeValue()
+            })
         }
     }
 

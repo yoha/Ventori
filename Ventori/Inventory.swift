@@ -10,14 +10,14 @@ import UIKit
 import FirebaseDatabase
 
 struct Inventory {
-    var name: String
-    var count: String
-    var image: String
-    var modifiedDate: String
+    let name: String
+    let count: String
+    let image: String
+    let modifiedDate: String
     
-    var firebaseDataSnapshotKey: String
+    let firebaseDataSnapshotKey: String
     
-    var firebaseDatabaseReference: DatabaseReference?
+    let firebaseDatabaseReference: DatabaseReference?
     
     // MARK: - Initalizers
     
@@ -27,6 +27,7 @@ struct Inventory {
         self.image = image
         self.modifiedDate = modifiedDate
         self.firebaseDataSnapshotKey = dataSnapshotKey
+        self.firebaseDatabaseReference = nil
     }
     
     init(snapshot: DataSnapshot) {

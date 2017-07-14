@@ -49,6 +49,7 @@ class AddViewController: UIViewController {
                 print("Error has occured: \(String(describing: error?.localizedDescription))")
                 return
             }
+            
             weakSelf.inventory = Inventory(name: validInventoryName,
                                        count: validCounter,
                                        image: validInventoryImageDownloadPath,
