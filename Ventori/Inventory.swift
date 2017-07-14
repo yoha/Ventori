@@ -17,6 +17,8 @@ struct Inventory {
     
     var firebaseDataSnapshotKey: String
     
+    var firebaseDatabaseReference: DatabaseReference?
+    
     // MARK: - Initalizers
     
     init(name: String, count: String, image: String, modifiedDate: String, dataSnapshotKey: String = "") {
@@ -34,6 +36,7 @@ struct Inventory {
         self.count = validSnapshotValue["count"] as! String
         self.image = validSnapshotValue["image"] as! String
         self.modifiedDate = validSnapshotValue["modifiedDate"] as! String
+        self.firebaseDatabaseReference = snapshot.ref
     }
     
     // MARK: - Helper Methods
