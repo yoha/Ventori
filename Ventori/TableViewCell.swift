@@ -25,8 +25,10 @@ class TableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.textLabel?.frame = CGRect(x: 75, y: 3, width: self.frame.width - 16, height: 23.5)
-        self.detailTextLabel?.frame = CGRect(x: 75, y: 26.5, width: self.frame.width - 16, height: 15.5)
+        self.textLabel?.frame = CGRect(x: 75, y: 3, width: self.frame.width, height: 23.5)
+        self.textLabel?.backgroundColor = UIColor.clear
+        self.detailTextLabel?.frame = CGRect(x: 75, y: 26.5, width: self.frame.width, height: 15.5)
+        self.detailTextLabel?.backgroundColor = UIColor.clear
         self.inventoryCount.frame = CGRect(x: self.frame.width - 60, y: self.frame.height / 2 - (23.5 / 2), width: 60, height: 23.5)
         self.imageView?.frame = CGRect(x: 16, y: 0, width: 44, height: 44)
         self.imageView?.applyCircleAndBorder()

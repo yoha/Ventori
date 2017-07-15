@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xF9-dJ-MyB">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -23,15 +23,15 @@
             <objects>
                 <tableViewController id="iIB-Yf-txd" customClass="TableViewController" customModule="Ventori" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Pv-Ub-MO3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reusableCell" textLabel="GhF-gg-7y1" detailTextLabel="rdW-Za-MlC" style="IBUITableViewCellStyleSubtitle" id="cap-Wy-qwe" customClass="TableViewCell" customModule="Ventori" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cap-Wy-qwe" id="f1D-21-BoZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GhF-gg-7y1">
@@ -93,11 +93,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pBQ-50-emf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DsC-fs-zom">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nhF-FT-GOc">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="cancel" id="OD5-2l-diI">
                                         <connections>
@@ -113,13 +113,13 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Inventory Name" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqq-XR-FQh">
-                                <rect key="frame" x="16" y="263" width="288" height="30"/>
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fnd-uS-Jqh">
-                                <rect key="frame" x="35" y="344" width="250" height="64"/>
+                                <rect key="frame" x="35" y="399" width="305" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMs-oq-dqj">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -133,13 +133,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zch-8l-hBs">
-                                        <rect key="frame" x="74" y="0.0" width="102" height="64"/>
+                                        <rect key="frame" x="74" y="0.0" width="157" height="64"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="75"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsQ-ZE-BeJ">
-                                        <rect key="frame" x="186" y="0.0" width="64" height="64"/>
+                                        <rect key="frame" x="241" y="0.0" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="4Mf-Md-Iej"/>
                                             <constraint firstAttribute="width" constant="64" id="i20-9p-ria"/>
@@ -152,7 +152,7 @@
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oXu-ge-IDk">
-                                <rect key="frame" x="87" y="91" width="145" height="145"/>
+                                <rect key="frame" x="87" y="91" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oXu-ge-IDk" secondAttribute="height" multiplier="1:1" id="wMw-dW-CLy"/>
                                 </constraints>
@@ -201,7 +201,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="aX0-9u-Dh8">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
