@@ -42,9 +42,9 @@ class AddViewController: UIViewController {
     @IBAction func saveBarButtonItemDidTouch(_ sender: UIBarButtonItem) {
         guard let validInventoryName = self.inventoryNameTextField.text, let validCounter = self.counterLabel.text, let validImage = self.inventoryImageView.image, let validImageData = UIImageJPEGRepresentation(validImage, 0.5) else { return }
         
-        let databaseReferenceWithChildAutoID = self.appDelegate.firebaseDatabaseReference.childByAutoId()
+        let databaseReferenceWithChildAutoID = self.firebaseDatabaseReference.childByAutoId()
         
-        self.appDelegate.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData, metadata: nil) { [weak self] (storageMetaData: StorageMetadata?, error: Error?) in
+        self.firebaseStorageReference.child("\(databaseReferenceWithChildAutoID.key)" + ".jpg").putData(validImageData, metadata: nil) { [weak self] (storageMetaData: StorageMetadata?, error: Error?) in
             guard let weakSelf = self, let validMetadata = storageMetaData, let validInventoryImageDownloadPath = validMetadata.name else {
                 print("Error has occured: \(String(describing: error?.localizedDescription))")
                 return
@@ -59,7 +59,7 @@ class AddViewController: UIViewController {
                 databaseReferenceWithChildAutoID.setValue(Inventory.returnDictionaryFormat(from: weakSelf.inventory))
             }
             else {
-                weakSelf.appDelegate.firebaseDatabaseReference.child(weakSelf.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: weakSelf.inventory))
+                weakSelf.firebaseDatabaseReference.child(weakSelf.firebaseDatabaseSnapshotKey).updateChildValues(Inventory.returnDictionaryFormat(from: weakSelf.inventory))
             }
             weakSelf.dismissAddViewController()
         }
@@ -136,7 +136,7 @@ class AddViewController: UIViewController {
     
     func load(_ inventory: Inventory) {
         self.inventoryNameTextField.text = inventory.name
-        self.returnImageFromURL(inventory.image, within: self.appDelegate.firebaseStorageReference) { (image: UIImage) -> Void in
+        self.returnImageFromURL(inventory.image, within: self.firebaseStorageReference) { (image: UIImage) -> Void in
             DispatchQueue.main.async {
                 self.inventoryImageView.image = image
             }
@@ -214,6 +214,8 @@ class AddViewController: UIViewController {
 
 extension AddViewController: CurrentAndDateTimeProtocol {}
 
+extension AddViewController: FirebaseDatabaseStorageProtocol {}
+
 extension AddViewController: StringToImageConversion {}
 
 extension AddViewController: UIImagePickerControllerDelegate {
@@ -228,7 +230,8 @@ extension AddViewController: UIImagePickerControllerDelegate {
     }
 }
 
-extension AddViewController: UINavigationControllerDelegate {}
+extension AddViewController: UINavigationControllerDelegate {
+}
 
 extension AddViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

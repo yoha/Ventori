@@ -22,7 +22,7 @@ class TableViewController: UITableViewController {
     // MARK: - Helper Methods
     
     func updateInventoriesInTableView() {
-        self.appDelegate.firebaseDatabaseReference.observe(.value) { [weak self] (dataSnapshot: DataSnapshot) in
+        self.firebaseDatabaseReference.observe(.value) { [weak self] (dataSnapshot: DataSnapshot) in
             guard let weakSelf = self else { return }
             weakSelf.inventories = dataSnapshot.children.map({ (child) -> Inventory in
                 return Inventory(snapshot: child as! DataSnapshot)
@@ -62,7 +62,7 @@ class TableViewController: UITableViewController {
         
         let currentInventory = self.inventories[indexPath.row]
         
-        self.returnImageFromURL(currentInventory.image, within: self.appDelegate.firebaseStorageReference) { (image: UIImage) in
+        self.returnImageFromURL(currentInventory.image, within: self.firebaseStorageReference) { (image: UIImage) in
             DispatchQueue.main.async {
                 customTableViewCell.imageView?.image = image
             }
@@ -77,7 +77,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let inventoryItem = self.inventories[indexPath.row]
-            self.appDelegate.firebaseStorageReference.child(inventoryItem.image).delete(completion: { (error: Error?) in
+            self.firebaseStorageReference.child(inventoryItem.image).delete(completion: { (error: Error?) in
                 guard error == nil else {
                     print("Error removing image file: \(String(describing: error?.localizedDescription))")
                     return
@@ -117,5 +117,7 @@ class TableViewController: UITableViewController {
 
 
 // MARK: - Extensions
+
+extension TableViewController: FirebaseDatabaseStorageProtocol {}
 
 extension TableViewController: StringToImageConversion {}
