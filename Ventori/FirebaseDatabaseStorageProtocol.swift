@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 
 protocol FirebaseDatabaseStorageProtocol {
-    // TODO: - necessary declarations?
     var firebaseDatabaseReference: DatabaseReference { get }
     var firebaseStorageReference: StorageReference { get }
 }
@@ -22,6 +21,4 @@ extension FirebaseDatabaseStorageProtocol {
     var firebaseStorageReference: StorageReference {
         return Storage.storage().reference(withPath: "inventory-images")
     }
-    
-    func something() { print("sfds") }
 }

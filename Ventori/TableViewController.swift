@@ -79,7 +79,7 @@ class TableViewController: UITableViewController {
             let inventoryItem = self.inventories[indexPath.row]
             self.firebaseStorageReference.child(inventoryItem.image).delete(completion: { (error: Error?) in
                 guard error == nil else {
-                    print("Error removing image file: \(String(describing: error?.localizedDescription))")
+                    print("Error removing image file in TableViewController: \(String(describing: error?.localizedDescription))")
                     return
                 }
                 inventoryItem.firebaseDatabaseReference?.removeValue()

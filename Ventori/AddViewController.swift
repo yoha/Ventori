@@ -50,6 +50,16 @@ class AddViewController: UIViewController {
                 return
             }
             
+            if weakSelf.inventory != nil {
+                weakSelf.firebaseStorageReference.child(weakSelf.inventory.image).delete { (error: Error?) in
+                    guard error == nil else {
+                        print("Error removing image file in AddViewController: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                    weakSelf.inventory.firebaseDatabaseReference?.removeValue()
+                }
+            }
+            
             weakSelf.inventory = Inventory(name: validInventoryName,
                                        count: validCounter,
                                        image: validInventoryImageDownloadPath,
@@ -230,8 +240,7 @@ extension AddViewController: UIImagePickerControllerDelegate {
     }
 }
 
-extension AddViewController: UINavigationControllerDelegate {
-}
+extension AddViewController: UINavigationControllerDelegate {}
 
 extension AddViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
